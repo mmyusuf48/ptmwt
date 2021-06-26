@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','PagesController@home');
 Route::post('/login-submit','PagesController@postlogin');
+Route::get('/logout','PagesController@logout');
 
 // konten
 Route::get('/konten','KontenController@index');

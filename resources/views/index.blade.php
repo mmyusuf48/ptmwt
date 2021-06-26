@@ -1,3 +1,7 @@
+<?php
+  if(Session::get('id')) 
+    echo '<script>window.location = "/konten";</script>';
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,7 +15,7 @@
 
     <title>login</title>
   </head>
-  <body >
+  <body>
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
