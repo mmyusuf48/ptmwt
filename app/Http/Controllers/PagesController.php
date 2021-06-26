@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class PagesController extends Controller
 {
@@ -22,15 +23,19 @@ class PagesController extends Controller
                 ->where('password', $request->password)
                 ->get()->first();
 
+        // echo "<pre>";
+        //     print_r($user);die();
+
         if ($user){
-            $request->session()->put('id',$user->id_manager);
-            $request->session()->put('nama',$user->nama_manager);
-            $request->session()->put('alamat',$user->alamat_manager);
-            $request->session()->put('nomer',$user->no_tlp_manager);
-            $request->session()->put('email',$user->email_manager);
-            $request->session()->put('foto',$user->foto_manager);
+            Session::put('id', $user->id_manager);
+            Session::put('name', $user->nama_manager);
+            Session::put('alamat', $user->alamat_manager);
+            Session::put('nomer', $user->no_tlp_manager);
+            Session::put('email', $user->email_manager);
+            Session::put('foto', $user->foto_manager);
             // echo 'berhasil login';
-        return redirect('/konten');
+
+            return redirect('/konten');
         }else{
             return redirect('/')->with('message','GAGAL LOGIIN  !');
         }
@@ -42,5 +47,8 @@ class PagesController extends Controller
         // // return redirect('/');
     }
 
-
+    public function logout(){
+        Session::flush();
+        return redirect('/');
+    }
 }
